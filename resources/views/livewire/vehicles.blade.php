@@ -2,7 +2,7 @@
     <h1 class="text-2xl font-bold">Vehicles</h1>
     <div class="flex flex-col gap-2 mt-4">
         @foreach ($vehicles as $vehicle)
-        <a href="#" aria-label="Vehicle">
+        <a href="{{ route('vehicles.edit', $vehicle) }}" aria-label="Vehicle">
             <flux:card size="sm" class="hover:bg-zinc-50 dark:hover:bg-zinc-700">
                 <flux:heading class="flex items-center gap-2">
                     {{ $vehicle->make }} {{ $vehicle->model }} {{ $vehicle->nickname ? '(' . $vehicle->nickname . ')' : '' }}

@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\CreateVehicle;
+use App\Livewire\EditVehicle;
 use Illuminate\Support\Facades\Route;
 use Laravel\WorkOS\Http\Middleware\ValidateSessionWithWorkOS;
 use App\Livewire\Vehicles;
@@ -11,6 +12,7 @@ Route::get('/', function () {
 
 Route::get('/vehicles', Vehicles::class)->middleware('auth')->name('vehicles.index');
 Route::get('/vehicles/create', CreateVehicle::class)->middleware('auth')->name('vehicles.create');
+Route::get('/vehicles/{vehicle}/edit', EditVehicle::class)->middleware('auth')->name('vehicles.edit');
 
 Route::middleware([
     'auth',
