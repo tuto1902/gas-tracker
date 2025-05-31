@@ -2,11 +2,18 @@
 
 namespace App\Livewire;
 
-use App\Forms\VehicleForm;
+use App\Models\Vehicle;
 use Livewire\Component;
 
 class Vehicles extends Component
 {
+
+    public $vehicles;
+
+    public function mount()
+    {
+        $this->vehicles = Vehicle::all();
+    }
 
     public function render()
     {
