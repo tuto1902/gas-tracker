@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
 {
+    protected $fillable = [
+        'nickname',
+        'make',
+        'model',
+        'year',
+        'initial_odometer',
+        'distance_units',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
