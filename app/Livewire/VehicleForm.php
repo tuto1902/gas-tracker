@@ -63,4 +63,11 @@ class VehicleForm extends Form
 
         $this->reset();
     }
+
+    public function delete(): void
+    {
+        $this->vehicle->delete();
+
+        $this->reset();
+    }
 }

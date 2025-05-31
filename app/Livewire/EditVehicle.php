@@ -22,6 +22,13 @@ class EditVehicle extends Component
         $this->redirect(route('vehicles.index'));
     }
 
+    public function delete()
+    {
+        $this->form->delete();
+
+        $this->redirect(route('vehicles.index'));
+    }
+
     public function render()
     {
         return view('livewire.edit-vehicle');

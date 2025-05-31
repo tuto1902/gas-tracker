@@ -16,6 +16,12 @@ class Vehicle extends Model
         'distance_units',
     ];
 
+    protected static function booted(): void
+    {
+        static::deleting(function (Vehicle $vehicle) {
+            $vehicle->fuelEntries()->delete();
+        });
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
