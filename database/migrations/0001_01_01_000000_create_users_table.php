@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('workos_id')->unique();
+            $table->string('distance_units')->default('mi');
+            $table->string('volume_units')->default('gal');
             $table->rememberToken();
             $table->text('avatar');
             $table->timestamps();

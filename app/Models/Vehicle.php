@@ -40,4 +40,25 @@ class Vehicle extends Model
             },
         );
     }
+
+    public function odometer(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return $this->lastOdometer * 1.60934;
+            },
+        );
+    }
+
+    public function distanceUnitsLabel(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return match ($this->distance_units) {
+                    'mi' => 'Miles',
+                    'km' => 'Kilometers',
+                };
+            },
+        );
+    }
 }

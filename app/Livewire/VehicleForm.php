@@ -38,13 +38,21 @@ class VehicleForm extends Form
         $this->make = $vehicle->make;
         $this->model = $vehicle->model;
         $this->year = $vehicle->year;
-        $this->initial_odometer = $vehicle->initial_odometer;
         $this->distance_units = $vehicle->distance_units;
+        if ($this->distance_units === 'km') {
+            $this->initial_odometer = $vehicle->initial_odometer * 1.60934;
+        } else {
+            $this->initial_odometer = $vehicle->initial_odometer;
+        }
     }
 
     public function store(): void
     {
         $this->validate();
+
+        if ($this->distance_units === 'km') {
+            $this->initial_odometer = $this->initial_odometer * 0.621371;
+        }
 
         Auth::user()->vehicles()->create($this->all());
 
@@ -58,6 +66,10 @@ class VehicleForm extends Form
         }
 
         $this->validate();
+
+        if ($this->distance_units === 'km') {
+            $this->initial_odometer = $this->initial_odometer * 0.621371;
+        }
 
         $this->vehicle->update($this->all());
 

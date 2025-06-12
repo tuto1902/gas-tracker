@@ -30,6 +30,6 @@
     </flux:field>
 
     <flux:radio.group wire:model="form.distance_units" label="Distance Units" variant="segmented">
-        <flux:radio label="Miles" value="miles" />
+        <flux:radio label="Miles" value="mi" />
         <flux:radio label="Kilometers" value="km" />
     </flux:radio.group>

@@ -12,7 +12,7 @@
                         {{ $vehicle->year }}
                     </span>
                     <flux:badge variant="outline" size="sm" class="bg-zinc-100 dark:bg-zinc-800">
-                        {{ $vehicle->initial_odometer }} {{ $vehicle->distance_units }}
+                        {{ ceil($vehicle->odometer) }} {{ $vehicle->distance_units }}
                     </flux:badge>
                 </flux:text>
             </flux:card>

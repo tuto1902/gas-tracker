@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
@@ -23,6 +24,8 @@ class User extends Authenticatable
         'email',
         'workos_id',
         'avatar',
+        'distance_units',
+        'volume_units',
     ];
 
     /**
@@ -62,5 +65,17 @@ class User extends Authenticatable
     public function vehicles()
     {
        return $this->hasMany(Vehicle::class);
+    }
+
+    public function volumeUnitsLabel(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return match ($this->volume_units) {
+                    'gal' => 'Gallons',
+                    'l' => 'Liters',
+                };
+            },
+        );
     }
 }

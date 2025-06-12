@@ -22,6 +22,6 @@ class CreateVehicle extends Component
     {
         $this->form->store();
 
-        $this->redirect(route('vehicles.index', ['vehicle' => $this->vehicle->id]));
+        $this->redirect(route('vehicles.index'));
     }
 }

@@ -14,11 +14,11 @@
                                 {{ $fuelEntry->date->format('M d, Y') }}
                             </span>
                             <span class="text-xs text-zinc-400">
-                                {{ $fuelEntry->odometer }} {{ $vehicle->distance_units }} | {{ $fuelEntry->fuel_amount }} {{ $vehicle->distance_units == 'miles' ? 'gal' : 'l' }} | {{ Number::currency($fuelEntry->total_cost) }}
+                                {{ ceil($fuelEntry->odometer) }} {{ $vehicle->distance_units }} | {{ ceil($fuelEntry->fuelAmountConverted) }} {{ Auth::user()->volumeUnitsLabel }} | {{ Number::currency($fuelEntry->total_cost) }}
                             </span>
                         </div>
                         <span class="text-md font-bold text-zinc-400">
-                            {{ Number::format($fuelEntry->mpg_kpl, 1) }} {{ $vehicle->distance_units == 'miles' ? 'mpg' : 'kpl' }}
+                            {{ Number::format($fuelEntry->fuelEfficiency, 1) }} {{ Auth::user()->distance_units == 'mi' ? 'mpg' : 'kpl' }}
                         </span>
                     </div>
                 </flux:text>

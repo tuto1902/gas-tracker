@@ -6,13 +6,19 @@
 
 <flux:field>
     <flux:label>Odometer</flux:label>
-    <flux:input wire:model="form.odometer" type="text" />
+    <flux:input.group>
+        <flux:input wire:model="form.odometer" type="text" />
+        <flux:input.group.suffix>{{ $vehicle->distanceUnitsLabel }}</flux:input.group.suffix>
+    </flux:input.group>
     <flux:error name="form.odometer" />
 </flux:field>
 
 <flux:field>
     <flux:label>Fuel Amount</flux:label>
-    <flux:input wire:model.blur="form.fuel_amount" type="text" />
+    <flux:input.group>
+        <flux:input wire:model.blur="form.fuel_amount" type="text" />
+        <flux:input.group.suffix>{{ Auth::user()->volumeUnitsLabel }}</flux:input.group.suffix>
+    </flux:input.group>
     <flux:error name="form.fuel_amount" />
 </flux:field>
 
