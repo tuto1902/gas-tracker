@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('make');
             $table->string('model');
+            $table->string('nickname')->nullable();
             $table->integer('year');
             $table->integer('initial_odometer');
-            $table->string('distance_unit');
-            $table->string('fuel_unit');
+            $table->string('distance_units');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

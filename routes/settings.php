@@ -12,4 +12,5 @@ Route::middleware([
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+    Volt::route('settings/units', 'settings.units')->name('settings.units');
 });

@@ -2,11 +2,26 @@
 
 namespace App\Models;
 
-use Attribute;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
 {
+    protected $fillable = [
+        'nickname',
+        'make',
+        'model',
+        'year',
+        'initial_odometer',
+        'distance_units',
+    ];
+
+    protected static function booted(): void
+    {
+        static::deleting(function (Vehicle $vehicle) {
+            $vehicle->fuelEntries()->delete();
+        });
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -22,6 +37,27 @@ class Vehicle extends Model
         return Attribute::make(
             get: function () {
                 return $this->fuelEntries()->latest('odometer')->first()?->odometer ?? $this->initial_odometer;
+            },
+        );
+    }
+
+    public function odometer(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return $this->lastOdometer * 1.60934;
+            },
+        );
+    }
+
+    public function distanceUnitsLabel(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                return match ($this->distance_units) {
+                    'mi' => 'Miles',
+                    'km' => 'Kilometers',
+                };
             },
         );
     }
