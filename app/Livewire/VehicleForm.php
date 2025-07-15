@@ -17,7 +17,7 @@ class VehicleForm extends Form
     public string $make = '';
     public string $model = '';
     public ?int $year = null;
-    public string $distance_units = 'miles';
+    public string $distance_units = 'mi';
     public ?int $initial_odometer = null;
 
     public function rules(): array
@@ -27,7 +27,7 @@ class VehicleForm extends Form
             'model' => ['required', 'string', 'max:255'],
             'year' => ['required', 'integer', 'min:1900', 'max:' . (date('Y') + 1)],
             'initial_odometer' => ['required', 'integer', 'min:0'],
-            'distance_units' => ['required', 'string', 'in:miles,km'],
+            'distance_units' => ['required', 'string', 'in:mi,km'],
         ];
     }
 

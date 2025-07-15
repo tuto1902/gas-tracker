@@ -1,10 +1,16 @@
 <?php
 
 use Livewire\Volt\Component;
+use Illuminate\Support\Facades\Auth;
 
 new class extends Component {
     public $distanceUnits = 'mi';
     public $volumeUnits = 'gal';
+
+    public function mount()
+    {
+        $this->distanceUnits = Auth::user()->distance_units;
+    }
 
     public function updated($property)
     {

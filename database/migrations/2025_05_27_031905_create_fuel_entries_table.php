@@ -19,6 +19,8 @@ return new class extends Migration
             $table->decimal('fuel_amount');
             $table->decimal('price_per_unit');
             $table->decimal('total_cost');
+            $table->decimal('mpg');
+            $table->decimal('kpl');
             $table->timestamps();
         });
     }
