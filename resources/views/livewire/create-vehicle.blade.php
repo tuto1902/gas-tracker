@@ -4,7 +4,8 @@
     <div class="flex flex-col gap-4 mt-4">
         <form wire:submit="create" class="flex flex-col gap-4">
             @include('livewire.vehicle-form')
-            <flux:button type="submit" class="mt-6">Create Vehicle</flux:button>
+            <flux:button type="submit" class="mt-6" variant="primary">Create Vehicle</flux:button>
+            <flux:button :href="route('vehicles.index')" class="mt-6">Cancel</flux:button>
         </form>
     </div>
 </section>

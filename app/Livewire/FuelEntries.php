@@ -3,22 +3,27 @@
 namespace App\Livewire;
 
 use App\Models\Vehicle;
+use Livewire\Attributes\Session;
 use Livewire\Component;
 
 class FuelEntries extends Component
 {
-    public Vehicle $vehicle;
+    #[Session]
+    public $vehicleId;
+
     public $fuelEntries;
 
-    public function mount(Vehicle $vehicle)
+    public function mount()
     {
-        $this->vehicle = $vehicle;
-        $this->fuelEntries = $vehicle->fuelEntries()->latest()->get();
+        $this->vehicleId = session()->get('vehicleId');
     }
-
 
     public function render()
     {
+        session(['vehicleId' => $this->vehicleId]);
+        $vehicle = Vehicle::find($this->vehicleId);
+        $this->fuelEntries = $vehicle ? $vehicle->fuelEntries()->latest()->get() : collect();
+
         return view('livewire.fuel-entries');
     }
 }
